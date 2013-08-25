@@ -1,0 +1,131 @@
+これから作りたい何か
+
+
+CommitedStepGetter
+コミット時に前回との差異を見て複雑度、修正ステップ数を算出するツール
+・クライアント側のフックで処理。グラフィカルな結果を表示したいため。
+サーバー側だとHTML（or エクセル？）作ってリンク表示～ぐらいのことしかできない。
+・クライアント側でコミット前・コミット後のソースをsourcemonitorに渡して結果比較
+・クライアント側からログと前回ソースが取れるか課題
+・rubyで作るとruby入れたクライアント側からしか使えない。結局サーバー側か・・・
+
+・コードを変更しただけで、追記が無かった場合に、どうやって相違点ステップ数を取るのかが課題・・・
+↑if文の条件だけを変更した場合、{}まで入れないとステップ数(statements)にならない。
+↑DIFFから構文解析が必要になる
+↑ビルドして中間コードを追ったほうが確実？
+↑後日にしたい
+↑とりあえずSourceMonitorのDIFFを出す
+↑Stepcounterを使えば修正コードもいけそう
+
+・出力項目には何が必要？
+→追加、修正されたソース一覧
+→ステップ数
+→追加ステップ数
+→循環的複雑度
+→追加循環的複雑度
+
+・フローチャート
+コミットする
+↓
+ログを見て、コミットされたソースを確認(svnlook changed)
+→svnlookの返り値を取ろうと思ったけど、windowsのruby1.9だと取る手段が無かったよ・・・spawnバグってて無理
+→もういい。C#で作るわ
+→execで別のファイルに吐き出す方法も駄目だった・・・http://ecpplus.net/weblog/windows_ruby_threa/
+→execした後、元のプロセスに帰って来れない
+→残った時間でno such file of directoryを直そうと画策
+↓
+コミットされたソースを取得してくる(svnlook cat)
+↓
+前回分CSVをリネーム
+↓
+ソースモニターで今回分のCSVを出す
+↓
+rubyで前回と今回分のCSVを読み込んで比較
+↓
+rubyでテキスト出力
+リビジョン番号＋コミットユーザー名
+
+よくよく考えたらソース管理サーバーにruby入れないと・・・
+EXE化してクライアントフックでやったほうがマシか？？
+→ソースdiffとかはクライアントだと取得とか遅いのでサーバー側にexe置く方向で。
+
+使用する外部コマンド：
+
+svnlook
+
+$svnpath = "C:\\Program Files (x86)\\VisualSVN Server\\bin"
+$svnlook = $svnpath + "\\svnlook.exe"
+$repopath = "C:/Repositories/svntest"
+$reporevision = "11"
+$svnlooktemp = "c:/temp/testcode/looktemp.txt"
+#exec($svnpath + "\\svnlook","changed", $repopath, "-r",$reporevision)
+cmd = "\"" + $svnlook + "\"" + " changed " + $repopath + " -r " + $reporevision + " > looktemp.txt"
+
+svnlook cat REPOS_PATH PATH_IN_REPOS
+
+結果はこんな感じ。
+svnlook changed c:\Repositories\svntest
+D   looktemp.txt
+A   フォルダー/
+A   フォルダー/looktemp.txt
+頭がA or Dで、最後が/ではない奴を拾ってくる。
+
+
+#エクスポートはフォルダ限定だし権限の関係もあるので使えない
+#サーバー上に生のソースが残るのはアレなのでupdateは使わない
+
+地味に時間がかかりそう。
+コミットする時に急いでいることが多いので、深夜にバッチを流して行うようにしたほうがいいかもしれない。
+
+C#のEXE起動はこのへんを参照
+http://www.atmarkit.co.jp/fdotnet/dotnettips/149procstart/procstart.html
+
+----
+コミット後に自動でビルドし、失敗するとサーバーからエラー音＆コミット者の名前を読み上げるツール
+----
+C#からのmp3再生は以下。
+http://dobon.net/vb/dotnet/programing/playmidifile.html
+課題：
+サーバー側にサウンドデバイスがあるか？
+ビルド命令をソース管理サーバーからビルドサーバーにどうやって送るか？
+
+----
+コミット履歴上にエクセルファイルへのリンクを埋め込めるツール（短縮アドレスで共有フォルダが参照できるサーバー
+----
+課題：
+最新のファイルの末尾に更新年月日をつけるという運用をしているので、自動で最新ファイルを開けるようにしたい
+
+
+----
+WEB週報からExcel出力
+----
+
+----
+この先数週間をAM/PMまたは午前、昼、夕、夜、深夜等のタイムメッシュに分けてスケジューリングするツール
+----
+午前：09:00～12:00
+昼：13:00～15:00
+夕：15:00～18:00
+夜：18:00～20:00
+深夜：20:00～24:00
+
+課題：
+どんなGUIにするか？
+
+
+
+次回持ち物
+/Windows
+rspecをインストールしてくる
+diaをインストールしてくる
+visual studioをインストールしてくる
+/Linux
+dia-gnomeをインストールしてくる
+google日本語入力をインストールしてくる
+rails new を試す（オフラインでこけた
+
+
+イヤホン（できれば骨伝導
+目薬
+USBスピーカー（重い）
+昼飯はうなぎ
