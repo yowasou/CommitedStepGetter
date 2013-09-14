@@ -20,7 +20,22 @@ namespace CommitedStepGetter
             //変更されたファイルの一覧を取得
             string changedFiles = GetCommandResult(svnlook, "changed " + repoPath + " -r " + revNo);
 
-            Debug.Write(output); // ［出力］ウィンドウに出力
+            //Debug.Write(changedFiles); // ［出力］ウィンドウに出力
+
+            //行ごとに配列へ
+            string[] changeFilesLines = changedFiles.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            List<string> filesNames = new List<string>();
+            foreach (string s in changeFilesLines)
+            {
+                string[] attrAndFile = s.Split(new string[] {" "},StringSplitOptions.RemoveEmptyEntries);
+                if (attrAndFile.Length > 1)
+                {
+                    filesNames.Add(attrAndFile[1]);
+                }
+            }
+
+
+
             return "1";
         }
         public virtual string GetCommandResult(string command, string arg)
