@@ -11,5 +11,11 @@
     <Setting Name="temppath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\temp\testcode\CommitedStepGetter\CommitedStepGetter\bin\Debug\temppath</Value>
     </Setting>
+    <Setting Name="smpath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files (x86)\SourceMonitor\SourceMonitor.exe</Value>
+    </Setting>
+    <Setting Name="smcmdpath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\temp\testcode\mycommand.xml</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

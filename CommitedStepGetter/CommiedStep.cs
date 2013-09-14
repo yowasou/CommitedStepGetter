@@ -18,6 +18,8 @@ namespace CommitedStepGetter
             string svnpath = CommitedStepGetter.Properties.Settings.Default.svnpath;
             string svnlook = svnpath + "\\" + CommitedStepGetter.Properties.Settings.Default.svnlook;
             string temppath = CommitedStepGetter.Properties.Settings.Default.temppath;
+            string smpath = CommitedStepGetter.Properties.Settings.Default.smpath;
+            string smcmdpath = CommitedStepGetter.Properties.Settings.Default.smcmdpath;
 
             //変更されたファイルの一覧を取得
             string changedFiles = GetCommandResult(svnlook, "changed " + repoPath + " -r " + revNo);
@@ -36,11 +38,38 @@ namespace CommitedStepGetter
                 }
             }
 
+            OutRevFilesToTempPath(repoPath, revNo, svnlook, temppath, filesNames);
+
+            GetCommandResult(smpath, "/C \"" + smcmdpath + "\"");
+
+            return "1";
+        }
+
+        /// <summary>
+        /// TEMPPATHに指定したリビジョン、パスのファイルを出力
+        /// </summary>
+        /// <param name="repoPath"></param>
+        /// <param name="revNo"></param>
+        /// <param name="svnlook"></param>
+        /// <param name="temppath"></param>
+        /// <param name="filesNames"></param>
+        protected virtual void OutRevFilesToTempPath(string repoPath, string revNo, string svnlook, string temppath, List<string> filesNames)
+        {
             //ファイルをtempフォルダに吐く
             //例：svnlook cat C:\Repositories\svntest もくもく会.txt -r 13
+            //一回フォルダを削除
+            Directory.Delete(temppath, true);
+            //また作成
+            Directory.CreateDirectory(temppath);
+
             foreach (string fileName in filesNames)
             {
                 string fileCat = GetCommandResult(svnlook, "cat " + repoPath + " " + fileName + " -r " + revNo);
+                string directoryName = Path.GetDirectoryName(temppath + "\\" + fileName);
+                if (!Directory.Exists(directoryName))
+                {
+                    Directory.CreateDirectory(directoryName);
+                }
                 StreamWriter sw = new StreamWriter(temppath + "\\" + fileName);
                 try
                 {
@@ -52,10 +81,8 @@ namespace CommitedStepGetter
                     sw.Close();
                 }
             }
-
-
-            return "1";
         }
+        
         public virtual string GetCommandResult(string command, string arg)
         {
             ProcessStartInfo psInfo = new ProcessStartInfo();

@@ -52,5 +52,29 @@ namespace CommitedStepGetter.Properties {
                 this["temppath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\SourceMonitor\\SourceMonitor.exe")]
+        public string smpath {
+            get {
+                return ((string)(this["smpath"]));
+            }
+            set {
+                this["smpath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\testcode\\mycommand.xml")]
+        public string smcmdpath {
+            get {
+                return ((string)(this["smcmdpath"]));
+            }
+            set {
+                this["smcmdpath"] = value;
+            }
+        }
     }
 }
