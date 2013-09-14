@@ -40,5 +40,17 @@ namespace CommitedStepGetter.Properties {
                 return ((string)(this["svnlook"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\testcode\\CommitedStepGetter\\CommitedStepGetter\\bin\\Debug\\temppath")]
+        public string temppath {
+            get {
+                return ((string)(this["temppath"]));
+            }
+            set {
+                this["temppath"] = value;
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace CommitedStepGetter
 
             string svnpath = CommitedStepGetter.Properties.Settings.Default.svnpath;
             string svnlook = svnpath + "\\" + CommitedStepGetter.Properties.Settings.Default.svnlook;
+            string temppath = CommitedStepGetter.Properties.Settings.Default.temppath;
 
             //変更されたファイルの一覧を取得
             string changedFiles = GetCommandResult(svnlook, "changed " + repoPath + " -r " + revNo);
@@ -34,6 +36,22 @@ namespace CommitedStepGetter
                 }
             }
 
+            //ファイルをtempフォルダに吐く
+            //例：svnlook cat C:\Repositories\svntest もくもく会.txt -r 13
+            foreach (string fileName in filesNames)
+            {
+                string fileCat = GetCommandResult(svnlook, "cat " + repoPath + " " + fileName + " -r " + revNo);
+                StreamWriter sw = new StreamWriter(temppath + "\\" + fileName);
+                try
+                {
+                    sw.Write(fileCat);
+                    sw.Flush();
+                }
+                finally
+                {
+                    sw.Close();
+                }
+            }
 
 
             return "1";
