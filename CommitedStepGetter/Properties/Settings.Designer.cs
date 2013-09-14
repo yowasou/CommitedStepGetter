@@ -41,39 +41,39 @@ namespace CommitedStepGetter.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\testcode\\CommitedStepGetter\\CommitedStepGetter\\bin\\Debug\\temppath")]
         public string temppath {
             get {
                 return ((string)(this["temppath"]));
             }
-            set {
-                this["temppath"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\SourceMonitor\\SourceMonitor.exe")]
         public string smpath {
             get {
                 return ((string)(this["smpath"]));
             }
-            set {
-                this["smpath"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\testcode\\mycommand.xml")]
         public string smcmdpath {
             get {
                 return ((string)(this["smcmdpath"]));
             }
-            set {
-                this["smcmdpath"] = value;
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\testcode\\dump.csv")]
+        public string csvpath {
+            get {
+                return ((string)(this["csvpath"]));
             }
         }
     }

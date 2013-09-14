@@ -8,14 +8,17 @@
     <Setting Name="svnlook" Type="System.String" Scope="Application">
       <Value Profile="(Default)">svnlook.exe</Value>
     </Setting>
-    <Setting Name="temppath" Type="System.String" Scope="User">
+    <Setting Name="temppath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">C:\temp\testcode\CommitedStepGetter\CommitedStepGetter\bin\Debug\temppath</Value>
     </Setting>
-    <Setting Name="smpath" Type="System.String" Scope="User">
+    <Setting Name="smpath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">C:\Program Files (x86)\SourceMonitor\SourceMonitor.exe</Value>
     </Setting>
-    <Setting Name="smcmdpath" Type="System.String" Scope="User">
+    <Setting Name="smcmdpath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">C:\temp\testcode\mycommand.xml</Value>
+    </Setting>
+    <Setting Name="csvpath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\temp\testcode\dump.csv</Value>
     </Setting>
   </Settings>
 </SettingsFile>

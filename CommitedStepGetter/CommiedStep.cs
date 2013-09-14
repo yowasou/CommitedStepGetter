@@ -20,6 +20,7 @@ namespace CommitedStepGetter
             string temppath = CommitedStepGetter.Properties.Settings.Default.temppath;
             string smpath = CommitedStepGetter.Properties.Settings.Default.smpath;
             string smcmdpath = CommitedStepGetter.Properties.Settings.Default.smcmdpath;
+            string csvpath = CommitedStepGetter.Properties.Settings.Default.csvpath;
 
             //変更されたファイルの一覧を取得
             string changedFiles = GetCommandResult(svnlook, "changed " + repoPath + " -r " + revNo);
@@ -39,6 +40,9 @@ namespace CommitedStepGetter
             }
 
             OutRevFilesToTempPath(repoPath, revNo, svnlook, temppath, filesNames);
+
+            XmlWriter xw = new XmlWriter();
+            xw.Write(smcmdpath, temppath + "\\temp.smproj", temppath, csvpath);
 
             GetCommandResult(smpath, "/C \"" + smcmdpath + "\"");
 
