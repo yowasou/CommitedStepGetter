@@ -4,9 +4,15 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Win32;
+using Microsoft.VisualBasic.FileIO;
 
 namespace CommitedStepGetter
 {
+    /// <summary>
+    /// HTMLテンプレートファイルの読み込みと、CSVから読み込んでの変形、
+    /// HTMLへの出力を行う
+    /// </summary>
     public class HtmlReader
     {
         public string Header = string.Empty;
@@ -33,17 +39,19 @@ namespace CommitedStepGetter
             Header = Read(templateheader);
             string template = Read(templateFile);
             StringBuilder sb = new StringBuilder(Header);
-            StreamReader sr = new StreamReader(csvFile, System.Text.Encoding.GetEncoding("shift_jis"));
+            TextFieldParser parser
+                = new TextFieldParser(csvFile, Encoding.GetEncoding("Shift_JIS"));
             try
             {
-                string head = sr.ReadLine();
-                string[] heads = head.Split(new char[] { ',' });
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                string[] heads = parser.ReadFields();
                 int cFileName = Array.IndexOf(heads, "File Name");
                 int cStatements = Array.IndexOf(heads, "Statements");
                 int cMaxcomp = Array.IndexOf(heads, "Maximum Complexity*");
-                while (!sr.EndOfStream)
+                while (parser.EndOfData == false)
                 {
-                    string[] readed = sr.ReadLine().Split(new char[] { ',' });
+                    string[] readed = parser.ReadFields();
                     string outv = template.Replace("%filename%", readed[cFileName])
                         .Replace("%steps%", readed[cStatements])
                         .Replace("%maxcomp%", readed[cMaxcomp]);
@@ -54,7 +62,7 @@ namespace CommitedStepGetter
             }
             finally
             {
-                sr.Close();
+                parser.Close();
             }
             return sb.ToString();
         }
