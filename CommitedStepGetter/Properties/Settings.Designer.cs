@@ -43,7 +43,7 @@ namespace CommitedStepGetter.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\testcode\\CommitedStepGetter\\CommitedStepGetter\\bin\\Debug\\temppath")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\testcode\\CommitedStepGetter\\CommitedStepGetter\\bin\\Debug\\temppath2")]
         public string temppath {
             get {
                 return ((string)(this["temppath"]));
@@ -74,6 +74,27 @@ namespace CommitedStepGetter.Properties {
         public string csvpath {
             get {
                 return ((string)(this["csvpath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\testcode\\CommitedStepGetter\\CommitedStepGetter\\template.html")]
+        public string htmltemplate {
+            get {
+                return ((string)(this["htmltemplate"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\testcode\\CommitedStepGetter\\CommitedStepGetter\\template_header.html")]
+        public string htmltemplate_header {
+            get {
+                return ((string)(this["htmltemplate_header"]));
+            }
+            set {
+                this["htmltemplate_header"] = value;
             }
         }
     }

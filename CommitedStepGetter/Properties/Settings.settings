@@ -9,7 +9,7 @@
       <Value Profile="(Default)">svnlook.exe</Value>
     </Setting>
     <Setting Name="temppath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\temp\testcode\CommitedStepGetter\CommitedStepGetter\bin\Debug\temppath</Value>
+      <Value Profile="(Default)">C:\temp\testcode\CommitedStepGetter\CommitedStepGetter\bin\Debug\temppath2</Value>
     </Setting>
     <Setting Name="smpath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">C:\Program Files (x86)\SourceMonitor\SourceMonitor.exe</Value>
@@ -19,6 +19,12 @@
     </Setting>
     <Setting Name="csvpath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">C:\temp\testcode\dump.csv</Value>
+    </Setting>
+    <Setting Name="htmltemplate" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\temp\testcode\CommitedStepGetter\CommitedStepGetter\template.html</Value>
+    </Setting>
+    <Setting Name="htmltemplate_header" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\temp\testcode\CommitedStepGetter\CommitedStepGetter\template_header.html</Value>
     </Setting>
   </Settings>
 </SettingsFile>

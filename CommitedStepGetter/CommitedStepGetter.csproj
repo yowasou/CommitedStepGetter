@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HtmlReader.cs" />
+    <Compile Include="LogWriter.cs" />
     <Compile Include="xmlwriter.cs" />
     <Compile Include="CommiedStep.cs" />
     <Compile Include="Program.cs" />

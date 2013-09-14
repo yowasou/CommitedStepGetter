@@ -21,6 +21,8 @@ namespace CommitedStepGetter
             string smpath = CommitedStepGetter.Properties.Settings.Default.smpath;
             string smcmdpath = CommitedStepGetter.Properties.Settings.Default.smcmdpath;
             string csvpath = CommitedStepGetter.Properties.Settings.Default.csvpath;
+            string htmltemplate = CommitedStepGetter.Properties.Settings.Default.htmltemplate;
+            string htmlheader = CommitedStepGetter.Properties.Settings.Default.htmltemplate_header;
 
             //変更されたファイルの一覧を取得
             string changedFiles = GetCommandResult(svnlook, "changed " + repoPath + " -r " + revNo);
@@ -46,6 +48,11 @@ namespace CommitedStepGetter
 
             GetCommandResult(smpath, "/C \"" + smcmdpath + "\"");
 
+            HtmlReader hr = new HtmlReader();
+            string html = hr.CreateHTML(revNo, csvpath, htmltemplate, htmlheader);
+            hr.WriteHTML(Path.GetDirectoryName(csvpath) + "\\" + 
+                Path.GetFileNameWithoutExtension(csvpath) + "_" + revNo + ".html", html);
+
             return "1";
         }
 
@@ -62,7 +69,10 @@ namespace CommitedStepGetter
             //ファイルをtempフォルダに吐く
             //例：svnlook cat C:\Repositories\svntest もくもく会.txt -r 13
             //一回フォルダを削除
-            Directory.Delete(temppath, true);
+            if (Directory.Exists(temppath))
+            {
+                Directory.Delete(temppath, true);
+            }
             //また作成
             Directory.CreateDirectory(temppath);
 

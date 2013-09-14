@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace CommitedStepGetter
 {
+    /// <summary>
+    /// SourceMonitor用のXML形式コマンド出力
+    /// </summary>
     public class XmlWriter
     {
         public string xmltemplate = string.Empty;
@@ -17,7 +20,7 @@ namespace CommitedStepGetter
    <write_log>true</write_log>
    <command>
       <project_file>%projectpath%</project_file>
-      <project_language>DCs</project_language>
+      <project_language>C#</project_language>
       <modified_complexity>true</modified_complexity>
       <ignore_blank_lines>true</ignore_blank_lines>
       <source_directory>%temppath%</source_directory>
@@ -30,6 +33,7 @@ namespace CommitedStepGetter
       <export>
         <export_file>%csvpath%</export_file>
         <export_type>3</export_type>
+        <export_option>1</export_option>
       </export>
    </command>
 </sourcemonitor_commands>

@@ -20,8 +20,15 @@ namespace CommitedStepGetter
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            CommitedStep cs = new CommitedStep();
-            Console.WriteLine(cs.Execute(args));
+            try
+            {
+                CommitedStep cs = new CommitedStep();
+                Console.WriteLine(cs.Execute(args));
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteEventLog(ex);
+            }
             return;
         }
     }
